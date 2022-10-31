@@ -11,6 +11,9 @@ const PORT = 5000
 
 connectDb()
 
+// Middleware
+app.use(express.json())
+
 route(app)
 
 mongoose.connection.once('open', () => {
