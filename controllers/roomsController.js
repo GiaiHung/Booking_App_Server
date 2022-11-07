@@ -25,6 +25,18 @@ export const put = async (req, res, next) => {
   }
 }
 
+export const updateRoomAvailability = async (req, res, next) => {
+  try {
+    await Room.updateOne(
+      { 'roomNumbers._id': req.params.id },
+      { $push: { 'roomNumbers.$.unavailableDates': req.body.dates } }
+    )
+    return res.status(206).json("Room is reserved successfully")
+  } catch (error) {
+    next(error)
+  }
+}
+
 export const get = async (req, res, next) => {
   try {
     const room = await Room.findById(req.params.id)
@@ -47,7 +59,7 @@ export const deleteRoom = async (req, res, next) => {
   try {
     await Room.findByIdAndDelete(req.params.id)
     try {
-      await Hotel.findByIdAndUpdate(req.params.hotelId, {$pull : {rooms: req.params.id}})
+      await Hotel.findByIdAndUpdate(req.params.hotelId, { $pull: { rooms: req.params.id } })
     } catch (error) {
       next(error)
     }

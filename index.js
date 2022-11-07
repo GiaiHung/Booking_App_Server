@@ -7,6 +7,7 @@ import cors from 'cors'
 import connectDb from './config/connectDb.js'
 import route from './routes/index.js'
 import corsOptionsDelegate from './config/corsOptions.js'
+import credentials from './config/credentials.js'
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ const PORT = 5000
 connectDb()
 
 // Middleware
+app.use(credentials)
 app.use(cors(corsOptionsDelegate))
 app.use(cookieParser())
 app.use(express.json())

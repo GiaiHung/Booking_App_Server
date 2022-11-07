@@ -1,5 +1,6 @@
 // Cross Origin Resource Sharing
-const allowedOrigins = require('./allowedOrigins')
+import allowedOrigins from './allowedOrigins.js'
+
 const corsOptionsDelegate = function (req, callback) {
   let corsOptions
   if (allowedOrigins.indexOf(req.header('Origin') !== -1)) {
@@ -10,4 +11,4 @@ const corsOptionsDelegate = function (req, callback) {
   callback(null, corsOptions)
 }
 
-module.exports = corsOptionsDelegate
+export default corsOptionsDelegate
