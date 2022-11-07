@@ -1,6 +1,5 @@
 import Room from '../models/Room.js'
 import Hotel from '../models/Hotel.js'
-import { createError } from '../utils/error.js'
 
 export const create = async (req, res, next) => {
   try {
@@ -10,7 +9,7 @@ export const create = async (req, res, next) => {
     } catch (error) {
       next(error)
     }
-    res.status(201).json({ success: true, newRoom })
+    res.status(201).json({ success: true, message: 'New room is created successfully', newRoom })
   } catch (error) {
     next(error)
   }

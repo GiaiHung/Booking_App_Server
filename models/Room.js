@@ -14,6 +14,10 @@ const RoomSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    hotelId: {
+      type: String,
+      required: true,
+    },
     maxPeople: {
       type: Number,
       required: true,
@@ -21,7 +25,7 @@ const RoomSchema = new mongoose.Schema(
     roomNumbers: [
       {
         number: Number,
-        unavailableDates: { type: [Date] },
+        unavailableDates: { type: [Date], default: [] },
       },
     ],
   },
